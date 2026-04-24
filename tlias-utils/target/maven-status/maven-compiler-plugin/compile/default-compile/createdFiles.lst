@@ -1,0 +1,4 @@
+com\itcast\utils\AliyunOSSProperties.class
+com\itcast\utils\JwtUtils.class
+com\itcast\utils\AliyunOSSOperator.class
+com\itcast\utils\ThreadLocalUtil.class

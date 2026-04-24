@@ -1,0 +1,15 @@
+com\itcast\pojo\Dept.class
+com\itcast\pojo\LogQueryParam.class
+com\itcast\pojo\OperateLog.class
+com\itcast\pojo\StudentQueryParam.class
+com\itcast\pojo\PageResult.class
+com\itcast\pojo\ClazzQueryParam.class
+com\itcast\pojo\JobOption.class
+com\itcast\pojo\Result.class
+com\itcast\pojo\Student.class
+com\itcast\pojo\Clazz.class
+com\itcast\pojo\EmpExpr.class
+com\itcast\pojo\EmpQueryParam.class
+com\itcast\pojo\LoginInfo.class
+com\itcast\pojo\Emp.class
+com\itcast\pojo\ClazzCountOption.class

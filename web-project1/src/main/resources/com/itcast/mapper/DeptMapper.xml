@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.mapper.DeptMapper">
+
+<!--    如果该部门有员工，则不能删除，没有员工，则删除-->
+    <delete id="delete">
+        delete from dept where id = #{id}
+    </delete>
+
+</mapper>
