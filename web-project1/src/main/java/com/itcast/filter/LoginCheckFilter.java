@@ -16,10 +16,12 @@ import java.io.IOException;
  * @Date 2025-01-11  17:01
  */
 @Slf4j
-@WebFilter("/*")
+//@WebFilter("/*")
 public class LoginCheckFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
+        System.out.println("执行了LoginCheckFilter拦截请求代码");
 
         // 1．获取请求url。
         // ServletRequest 是父接口，功能少
@@ -32,8 +34,8 @@ public class LoginCheckFilter implements Filter {
         //     request.getRequestURL(); 获取的路径是 http:/localhost:8080/emps
         String path = request.getRequestURI();
 
-        // 2。判断请求url中是否包含login，如果包含，说明是登录操作，放行。
-        if(path.contains("/login")){
+        // 2。判断请求url中是否包含login、upload或teachers，如果包含，说明是登录、上传或查询班主任操作，放行。
+        if(path.contains("/login") || path.contains("/upload")){
             filterChain.doFilter(request, response);
             return;//结束，不可以往下走，下面是校验token
         }
@@ -57,5 +59,7 @@ public class LoginCheckFilter implements Filter {
         }
         // 6．放行。
         filterChain.doFilter(request, response);
+
+        System.out.println("执行了LoginCheckFilter拦截响应代码");
     }
 }

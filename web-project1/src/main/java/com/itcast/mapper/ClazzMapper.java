@@ -24,5 +24,5 @@ public interface ClazzMapper {
     void update(Clazz clazz);
 
     @Select("select count(*) from student where clazz_id = #{clazzId}")
-    long countEmpByDeptId(Integer id);
+    long countStudentByClazzId(Integer clazzId);
 }

@@ -5,6 +5,7 @@ import com.itcast.pojo.Result;
 import com.itcast.pojo.Student;
 import com.itcast.pojo.StudentQueryParam;
 import com.itcast.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +30,14 @@ public class StudentController {
      * @param id
      * @return
      */
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Result getById(@PathVariable Integer id) {
         log.info("查询学员ID: {}", id);
         Student student = studentService.getById(id);
         return Result.success(student);
     }
 
-    @DeleteMapping("{ids}")
+    @DeleteMapping("/{ids}")
     public Result delete(@PathVariable Integer[] ids) {
         log.info("删除学生: {}", ids);
         studentService.delete(ids);
@@ -44,7 +45,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public Result insert(@RequestBody Student student) {
+    public Result insert(@Valid @RequestBody Student student) {
         log.info("添加学生: {}", student);
         studentService.insert(student);
         return Result.success();
@@ -56,7 +57,7 @@ public class StudentController {
      * 修改学员信息
      */
     @PutMapping
-    public Result update(@RequestBody Student student){
+    public Result update(@Valid @RequestBody Student student){
         log.info("修改员工，员工信息：{}",student);
         studentService.update(student);
         return Result.success();

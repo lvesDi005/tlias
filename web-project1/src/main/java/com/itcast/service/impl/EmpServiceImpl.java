@@ -148,5 +148,14 @@ public class EmpServiceImpl implements EmpService {
         return null;
     }
 
+    @Override
+    public List<Emp> list() {
+        return EmpMapper.listAll();
+    }
+/*    @Override
+    public List<Map<String, Object>> getTeacherList() {
+        return EmpMapper.getTeacherList();
+    }*/
+
 
 }

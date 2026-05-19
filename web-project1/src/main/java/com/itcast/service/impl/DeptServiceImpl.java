@@ -33,7 +33,10 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public void delete(Integer id) {
-
+        long count = deptMapper.countEmpByDeptId(id);
+        if (count > 0) {
+            throw new RuntimeException("该部门下有员工，不能删除");
+        }
         deptMapper.delete(id);
     }
 

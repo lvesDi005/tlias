@@ -1,9 +1,9 @@
 package com.itcast.controller;
 
-import com.itcast.mapper.DeptMapper;
 import com.itcast.pojo.Dept;
 import com.itcast.pojo.Result;
 import com.itcast.service.DeptService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +23,6 @@ public class DeptController {
 
     @Autowired
     private DeptService deptService;
-    @Autowired
-    private DeptMapper deptMapper;
 
     /**
      * 查询部门列表
@@ -45,7 +43,7 @@ public class DeptController {
      */
     @PostMapping
     //@RequestBody 映射json数据
-    public Result insert(@RequestBody Dept dept) {
+    public Result insert(@Valid @RequestBody Dept dept) {
         log.info("新增部门：{}", dept);
         deptService.insert(dept);
         return Result.success();
@@ -60,11 +58,6 @@ public class DeptController {
     //@RequestParam(name = "id")
     public Result delete(Integer id) {
         log.info("删除部门：{}", id);
-        long count = deptMapper.countEmpByDeptId(id);
-        if (count > 0) {
-            //throw new RuntimeException("该部门下有员工，不能删除");
-            return Result.error("该部门下有员工，不能删除");
-        }
         deptService.delete(id);
         return Result.success();
     }
@@ -88,7 +81,7 @@ public class DeptController {
      * @return
      */
     @PutMapping
-    public Result update(@RequestBody Dept dept) {
+    public Result update(@Valid @RequestBody Dept dept) {
         log.info("修改部门：{}", dept);
         deptService.update(dept);
         return Result.success();

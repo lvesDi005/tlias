@@ -1,11 +1,11 @@
 package com.itcast.controller;
 
-import com.itcast.mapper.ClazzMapper;
 import com.itcast.pojo.Clazz;
 import com.itcast.pojo.ClazzQueryParam;
 import com.itcast.pojo.PageResult;
 import com.itcast.pojo.Result;
 import com.itcast.service.ClazzService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,6 @@ public class ClazzController {
 
     @Autowired
     private ClazzService clazzService;
-    @Autowired
-    private ClazzMapper clazzMapper;
 
     /**
      * 班级列表分页查询
@@ -41,11 +39,6 @@ public class ClazzController {
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         log.info("删除班级: {}", id);
-        long count = clazzMapper.countEmpByDeptId(id);
-        if (count > 0) {
-            //throw new RuntimeException("该班级下有学生，不能删除");
-            return Result.error("该班级下有学生，不能删除");
-        }
         clazzService.delete(id);
         return Result.success();
     }
@@ -56,7 +49,7 @@ public class ClazzController {
      * @return
      */
     @PostMapping
-    public Result insert(@RequestBody Clazz clazz) {
+    public Result insert(@Valid @RequestBody Clazz clazz) {
         log.info("新增班级: {}", clazz);
         clazzService.insert(clazz);
         return Result.success();
@@ -76,7 +69,7 @@ public class ClazzController {
      * 修改班级
      */
     @PutMapping
-    public Result update(@RequestBody Clazz clazz) {
+    public Result update(@Valid @RequestBody Clazz clazz) {
         log.info("修改班级: {}", clazz);
         clazzService.update(clazz);
         return Result.success();

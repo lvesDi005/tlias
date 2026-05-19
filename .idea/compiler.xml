@@ -15,15 +15,17 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="E:/maven/apache-maven-3.8.8/mvn_repo/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
-          <entry name="E:/maven/apache-maven-3.8.8/mvn_repo/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
         </processorPath>
         <module name="web-project1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel target="17">
+      <module name="springboot-ioc-homework" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-ioc-homework" options="-parameters" />
       <module name="tlias-parent" options="" />
       <module name="tlias-pojo" options="-parameters" />
       <module name="tlias-utils" options="-parameters" />

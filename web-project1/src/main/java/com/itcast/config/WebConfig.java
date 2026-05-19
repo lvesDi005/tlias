@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration //spring框架配置类注解
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private Demo1Interceptor demo1Interceptor;
+/*    @Autowired
+    private Demo1Interceptor demo1Interceptor;*/
 
     @Autowired
     private LoginCheckInterceptor loginCheckInterceptor;
@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
         // 在spring框架中， “/*” 值代码一层路径的任意字符，“/**”代表任意多层字符
         // “/a/*/b”  题目：A:“/a/123/b” B:“/a/123/c/b” 可以匹配哪个？答：A
         // “/a/**/b”  题目：A:“/a/123/b” B:“/a/123/c/b” 可以匹配哪个？答：A，B
-        registry.addInterceptor(demo1Interceptor).addPathPatterns("/**");
+        //registry.addInterceptor(demo1Interceptor).addPathPatterns("/**");
 
         //注册登录校验拦截器，并设置拦截路径，然后还要设置排除路径
         //  excludePathPatterns("/login")设置不拦截的路径

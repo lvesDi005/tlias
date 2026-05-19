@@ -27,5 +27,8 @@ public interface EmpService {
 
     LoginInfo getLoginInfo(Emp emp);
 
+    //List<Map<String, Object>> getTeacherList();
 
+
+    List<Emp> list();
 }

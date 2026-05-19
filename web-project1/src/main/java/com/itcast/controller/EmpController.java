@@ -1,10 +1,14 @@
 package com.itcast.controller;
 
-import com.itcast.pojo.Emp;
-import com.itcast.pojo.EmpQueryParam;
-import com.itcast.pojo.PageResult;
-import com.itcast.pojo.Result;
+import com.itcast.pojo.*;
 import com.itcast.service.EmpService;
+
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +27,19 @@ public class EmpController {
 
     /**
      * 分页查询
-     * @param empQueryParam
      * @RequestParam 设置请求参数的默认值
      * @return
      */
+    /*
+    查询全部员工
+     */
+    @GetMapping("/list")
+    public Result list() {
+        log.info("查询所有员工");
+        List<Emp> empList = EmpService.list();
+        return Result.success(empList);
+    }
+
 /*    @GetMapping
     public Result page(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam (defaultValue = "10") Integer pageSize,
@@ -62,9 +75,16 @@ public class EmpController {
      */
     //@LogOperator
     @PostMapping
-    public Result insert(@RequestBody Emp emp){
+    public Result insert(@Validated(Emp.InsertGroup.class) @RequestBody Emp emp){
         log.info("新增员工，员工信息：{}",emp);
         EmpService.insert(emp);
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result update(@Valid @RequestBody Emp emp){
+        log.info("修改员工，员工信息：{}",emp);
+        EmpService.update(emp);
         return Result.success();
     }
 
@@ -79,13 +99,20 @@ public class EmpController {
     }
 
     /**
-     * 修改员工信息
-     */
-    @PutMapping
-    public Result update(@RequestBody Emp emp){
-        log.info("修改员工，员工信息：{}",emp);
-        EmpService.update(emp);
-        return Result.success();
+     * 查询班主任列表
+     *//*
+    @GetMapping("/teachers")
+    public Result getTeacherList(){
+        log.info("查询班主任列表");
+        List<Map<String, Object>> teacherList = EmpService.getTeacherList();
+        // 转换为前端下拉框需要的格式 {value, label}
+        List<Map<String, Object>> resultList = teacherList.stream().map(map -> {
+            Map<String, Object> newMap = new HashMap<>();
+            newMap.put("value", map.get("id"));
+            newMap.put("label", map.get("name"));
+            return newMap;
+        }).toList();
+        return Result.success(resultList);
     }
-
+*/
 }

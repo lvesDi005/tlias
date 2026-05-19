@@ -16,7 +16,7 @@ import java.io.IOException;
  *      3.使用@WebFilter注解
  *      4.在启动类上添加注解 @ServletComponentScan
  */
-@WebFilter("/*")  // /* 代表拦截任何路径请求
+//@WebFilter("/*")  //  代表拦截任何路径请求
 public class Demo1Filter implements Filter {
 
     /**

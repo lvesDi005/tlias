@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: web-project1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/web-project1?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 666321
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+aliyun:
+  oss:
+    access-key-id: LTAI5t8PCxTwBfuW50a9HQVn
+    access-key-secret: oTOmQf6090r4NpGJKZZhEVrOVCMm2h
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucket-name: jing-python

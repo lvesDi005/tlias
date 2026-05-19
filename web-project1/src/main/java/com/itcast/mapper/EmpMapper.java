@@ -57,4 +57,9 @@ public interface EmpMapper {
     @Select("select * from emp where username = #{username} and password = #{password}")
     Emp findByUsernameAndPassword(Emp emp);
 
+    @Select("select id, name from emp where job = 1")
+    List<Map<String, Object>> getTeacherList();
+
+    @Select("select id, name from emp")
+    List<Emp> listAll();
 }

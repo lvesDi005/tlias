@@ -32,12 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-**/target/
-.idea
-*.iml
-*.class
-*Test.java
-**/test/
-application.yml
+
+
 
 
